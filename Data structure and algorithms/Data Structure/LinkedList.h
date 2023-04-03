@@ -1,16 +1,6 @@
 #pragma once
 #include <iostream>
-
-class Node {
-public:
-	int data;
-	Node* next;
-	Node(int data) {
-		this->data = data;
-		this->next = nullptr;
-	}
-};
-
+#include "Node.h"
 
 class LinkedList {
 protected:
@@ -23,7 +13,21 @@ public:
 	bool search(int data);
 	void remove();
 	void print();
+	bool erase(int data);
+};
 
+class frontLinkedList : public LinkedList {
+public:
+	frontLinkedList();
+	void insert(int data);
+};
 
-
+class circularLinkedList : public LinkedList {
+public:
+	circularLinkedList();
+	void insert(int data);
+	bool search(int data);
+	void remove(int data);
+	void print();
+	
 };
