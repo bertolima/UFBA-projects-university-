@@ -2,19 +2,32 @@
 //
 
 #include <iostream>
-#include "LinkedList.h"
+#include "BinaryTree.h"
+#include <Windows.h>
 
 int main()
 {
 
-    LinkedList lista;
+    BinaryTree tree;
 
-    for (int i = 0; i < 50; i++) {
-        lista.insert(i);
-    }
-    lista.print();
-    lista.remove();
-    lista.print();
+    tree.insert(25);
+    tree.insert(15);
+    tree.insert(10);
+    tree.insert(4);
+    tree.insert(12);
+
+    tree.print_post_order(tree.getRoot());
+    std::cout << "\n";
+    tree.print_in_order(tree.getRoot());
+    std::cout << "\n";
+    tree.print_pre_order(tree.getRoot());
+    std::cout << "\n";
+
+    tree.remove(tree.getRoot(), 4);
+
+    tree.print_pre_order(tree.getRoot());
+    std::cout << "\n";
+
 
     std::cout << "Hello World!\n";
 }
