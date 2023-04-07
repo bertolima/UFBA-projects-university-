@@ -51,7 +51,7 @@ class Setor:
     def makeShape(self, batch):
         return pyglet.shapes.Rectangle(self.x, self.y,self.largura, self.altura, color=(random.randint(0,255), random.randint(0,255), random.randint(0,255)), batch=batch)
     
-    def getAreaSobreposta(self, setor):
+    def getOverlapPoints(self, setor):
         d1 = (self.x, self.y)
         b1 = (self.x+self.largura, self.y+self.altura)
         b2 = (setor.x + setor.largura, setor.y + setor.altura)
@@ -64,19 +64,18 @@ class Setor:
 
         return x1, y1, x2, y2
         
-        
-    def makeShapeSobreposta(self, setor, batch):
-        x1, y1, x2, y2 = self.getAreaSobreposta(setor)
+    def makeOverlapShapes(self, setor, batch):
+        x1, y1, x2, y2 = self.getOverlapPoints(setor)
         self.hasSobreposicao = True
         width = x2-x1
         height = y2-y1
         self.areaSobreposicao = self.areaSobreposicao + width*height
         return pyglet.shapes.Rectangle(x1, y1, width, height, color=(255, 255, 255), batch=batch)
     
-    def getSobreposta(self):
+    def getOverlapArea(self):
         return self.areaSobreposicao
     
-    def isSobreposto(self):
+    def isOverlap(self):
         return self.hasSobreposicao
     
         

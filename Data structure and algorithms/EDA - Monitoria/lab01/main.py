@@ -9,7 +9,7 @@ if __name__ == '__main__':
         screen = Screen(nSetores)
         screen.end()
     except:
-        screen = Screen(10)
+        screen = Screen(30)
         screen.end()
 
 
