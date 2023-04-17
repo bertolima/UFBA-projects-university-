@@ -1,4 +1,4 @@
-#include "include/InsertionSort.h"
+#include "include/HeapSort.h"
 #include <iostream>
 #include <ctime>
 
@@ -13,7 +13,7 @@ int main(){
     }
     std::cout << "\n";
 
-    InsertionSort(arr, size);
+    HeapSort(arr, size);
 
     for (int i=0;i<size;i++){
         std::cout << arr[i] << " ";
