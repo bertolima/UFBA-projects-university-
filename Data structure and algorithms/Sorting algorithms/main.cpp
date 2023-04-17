@@ -1,21 +1,21 @@
-#include "MergeSort.h"
+#include "InsertionSort.h"
 #include <iostream>
 #include <ctime>
 
 int main(){
     srand(static_cast<unsigned>(time(NULL)));
 
-    int arr[5] = {30, 5, 10, 3, 4};
+    int arr[11] = {30, 5, 10, 3, 4, 90, 150, 2, 67, 30, 7};
     int size = sizeof(arr)/sizeof(int);
 
-    for (int i=0;i<5;i++){
+    for (int i=0;i<size;i++){
         std::cout << arr[i] << " ";
     }
     std::cout << "\n";
 
-    MergeSort(arr, 0, size-1);
+    InsertionSort(arr, size);
 
-    for (int i=0;i<5;i++){
+    for (int i=0;i<size;i++){
         std::cout << arr[i] << " ";
     }
 
