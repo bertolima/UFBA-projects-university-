@@ -1,6 +1,0 @@
-Documentação: O trabalho envolvia o uso de listas/pilhas/filas, mas em nenhum local do readme existe justificativa pra uso desses TAD's. A análise de complexidade de algumas funções está errada.
-Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas "prontas", mas você utilizou o método shuffle da biblioteca random.
-Distribuição de cartas: OK
-Formação e armazenamento dos pares: Seu método usa o operador "in", mas o intuito da atividade é que se faça as operações sem utilizar coisas "prontas". Além disso, o python não reconhece o operador "in" quando utilizado na classe Mao, pra fazer isso você teria que fazer o overloading com os métodos especiais.
-Simulação das jogadas: Seu código não roda adequadamente de modo que não é possível ver as jogadas.
-Simulação completa: Não há uma definição clara do uso dos TAD's pedidos, além disso, o simulador não funciona.

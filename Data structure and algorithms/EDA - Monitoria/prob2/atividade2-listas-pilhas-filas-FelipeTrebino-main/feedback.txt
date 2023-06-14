@@ -1,8 +1,0 @@
-Documentação: OK
-Geração ACE: OK
-Distribuição de cartas: OK
-Formação e armazenamento dos pares: OK
-Simulação das jogadas: OK
-Simulação completa: O simulador funciona bem, só vou lhe atentar que você fez a classe cBaralho com métodos do que seria uma classe cPilha, seria mais interessante que a classe cBaralho tivesse apenas métodos referentes a classe cBaralho, e pra representar corretamente a estrutura era só fazer um atributo do tipo cPilha dentro da classe cBaralho, dessa forma a organização das estruturas de dado fica melhor definida e é mais fácil ler e fazer manutenção no código.
-
-OBS: Ótimo trabalho, código muito bem comentando e limpo.

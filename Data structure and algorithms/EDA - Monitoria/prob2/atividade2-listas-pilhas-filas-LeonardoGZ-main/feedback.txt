@@ -1,6 +1,0 @@
-Documentação: Criar baralho é O(1), distribuir cartas é O(n)
-Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas "prontas", mas você utilizou o método shuffle da biblioteca random.
-Distribuição de cartas: Você divide a quantidade de cartas pela quantidade de jogadores e distribui as cartas igualmente entre os jogadores, mas não é assim que a distribuição de cartas deve ocorrer.
-Formação e armazenamento dos pares: Não está errado, mas o método ficou bem longo e fiz inúmera operações desnecessárias.
-Simulação das jogadas: Não tem timming pras jogadas, ao invés de exibir apenas o ultimo par feito, está exibindo o monte todo dos pares feitos.
-Simulação completa: Você colocou diversas classes num único módulo, além de faltar especifidade na nomeação das coisas. Enfim, a simulação funciona, entao OK.

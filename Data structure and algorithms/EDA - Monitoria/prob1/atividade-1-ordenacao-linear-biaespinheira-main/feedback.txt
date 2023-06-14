@@ -1,6 +1,0 @@
-README: Faltaram as referências. Além disso, seria interessante que as estatisticas das comparações dos algoritmos utilizadss fossem apresentadas no relatório técnico.
-Boas práticas: OK
-Uso de recursos do github: OK
-Escolha e justificativa do algoritmo: OK
-Implementação TAD: OK
-Programa teste: OK
