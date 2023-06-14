@@ -1,0 +1,6 @@
+README: Sem justificativa da escolha do algoritmo, seu README contém apenas informações soltas sobre o radixsort
+Boas praticas: OK
+Uso de recursos do github: OK
+Escolha e justificativa do algoritmo: Não teve.
+Implementação TAD: RadixSort não deveria ser uma classe nova, deveria ser um método da classe Vetor.
+Programa teste: O código não roda, você tentou usar variaveis que não foram instanciadas, tentei consertar na mão, mas mesmo assim o vetor de saída foi igual ao vetor gerado. Além disso, nenhuma geração de estatistica.

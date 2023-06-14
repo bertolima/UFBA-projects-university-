@@ -1,0 +1,6 @@
+Documentação: Não achei.
+Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas "prontas", mas você utilizou o método shuffle da biblioteca random.
+Distribuição de cartas: OK
+Formação e armazenamento dos pares: Assim que o jogo começa, as cartas que formam pares na mão de um jogador parecem não terem sido removidas adequadamente.
+Simulação das jogadas: Não tem timming pras jogadas e o que deve ser exibido é o ultimo par formado pra cada jogador, mas seu programa exibe uma única carta.
+Simulação completa: A simulação funciona, mas faltou utilizar algumas TAD's que sequer foram implementadas afim de agilizar processos. 

@@ -1,0 +1,6 @@
+"Documentação: Justificativa para o uso das TAD's está incompleta.
+Geração ACE: OK, mas o número de operações aqui pode ficar gigantesco a depender da sorte, há maneiras melhores de se lidar com colisões.
+Distribuição de cartas: OK
+Formação e armazenamento dos pares: OK, mas seu uso das TAD's ficou super confuso, além disso não encapsulou praticamente nada.
+Simulação das jogadas: Não tem timming, então fica difícil acompanhar as jogadas e poderia simular melhor como cada jogada acontece.
+Simulação completa: É importante que os princípios de encapsulamento sejam seguidos, além disso, suas TAD's espécificas pra simular o jogo estão misturadas com as TAD's requeridas pra fazer o trabalho, então fica tudo super confuso, apesar da sua aplicação rodar é extremamente ruim de localizar as coisas.

@@ -1,0 +1,6 @@
+Documentação: Análise de complexidade de justificativa pra uso dos TAD's está incompleto e poderia estar melhor organizado.
+Geração ACE: Usou método shuffle da biblioteca random.
+Distribuição de cartas: OK
+Formação e armazenamento dos pares: Muitas operações desnecessárias e confusas para o proprósito do método. Além disso, a escolha do TAD pra armazenar os pares formados não foi das melhores.
+Simulação das jogadas: Não tem.
+Simulação completa: Código não tem um início, você apenas implementou as classes, mas não criou nenhum objeto no código, portanto não existe trechos de código que rodem.

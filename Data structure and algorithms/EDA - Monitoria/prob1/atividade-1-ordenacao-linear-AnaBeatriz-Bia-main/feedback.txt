@@ -1,0 +1,7 @@
+README: Existem alguns erros no seu relatório técnico. Você não pode inferir que o extended counting sort foi mais eficiente que outros algoritmos de ordenação dado o menor numero de comparações, pois o counting sort não ordena com base em comparações. Os algoritmos de comaparação são limitados na complexidade O(n.logn). Além disso a justificativa para usar o algoritmo é fraca, tudo bem que ele ordena valores reais, mas o counting sort é especificamente bom quando o valor constante k do maior elemento é um valor pequeno, se esse valor for grande vai demandar de vetores auxiliares igualmente grandes para realizar a ordenação e, nesse problema em questão não existe uma limitação para esse valor k.
+Modularização e Classes: Foram criados 6 módulos de forma totalmente desnecessárias, você repetiu a mesma tad: Vetor em 3 desses módulos e usou outros 3 módulos pra testar cada algoritmo. O ideal seria usar 2 módulos, um módulo para testes e o outro módulo para implementar a classe vetor e os algoritmos de ordenação seriam metodos dessa classe.
+Boas praticas: OK
+Uso de recursos do github: OK
+Escolha e justificativa do algoritmo: Já comentei os erros anteriormente.
+Implementação TAD: Seu algoritmo não gera valores corretos no vetor de saída, portanto foi implementado de forma errada
+Programa teste: A unica geração de estatisticas foi sobre o número de comparações, mas como ja foi dito, o couting sort não compara. Além disso, já foi dito que a saída do vetor ordenado está errada.

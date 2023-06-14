@@ -1,0 +1,6 @@
+Documentação: Análise de complexidade e uso das TAD's superficial .
+Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas "prontas", mas você utilizou o método shuffle da biblioteca random.
+Distribuição de cartas: OK
+Formação e armazenamento dos pares: A melhor estrutura para armazenamento dos pares seria uma pilha.
+Simulação das jogadas: Falta a informação de qual o ultimo par removido por um jogador.
+Simulação completa: Não há parametrização da quantidade de jogadores. Modularização foi mal feita e também existe mais de uma classe em alguns módulos (classes totalmente diferentes). 

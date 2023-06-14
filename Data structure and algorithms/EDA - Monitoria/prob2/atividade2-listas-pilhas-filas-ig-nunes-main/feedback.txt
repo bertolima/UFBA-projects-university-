@@ -1,0 +1,8 @@
+Documentação: Análise de complexidade superficial .
+Geração ACE: OK
+Distribuição de cartas: OK
+Formação e armazenamento dos pares: OK
+Simulação das jogadas: O ultimo par removido consiste em duas cartas, mas na sua simulação só é mostrada uma.
+Simulação completa: Tem muito mais módulos do que é necessário e muitas vezes utilizou herança de forma desnecessária, essas ferramentas são interessantes se forem usadas corretamente, caso contrário pode tornar o código mais confuso de ler e fazer manutenção.
+
+OBS: Ótimo trabalho, foi bem comentado a visualização das jogadas ficou boa. 

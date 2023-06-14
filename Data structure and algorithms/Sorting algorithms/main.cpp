@@ -1,4 +1,4 @@
-#include "include/QuickSort.h"
+#include "include/CountingSort.h"
 #include <iostream>
 #include <ctime>
 
@@ -13,7 +13,7 @@ int main(){
     }
     std::cout << "\n";
 
-    tailQuickSort(arr, 0, size-1);
+    CountingSort(arr, size, 200);
 
     for (int i=0;i<size;i++){
         std::cout << arr[i] << " ";
