@@ -1,0 +1,6 @@
+Documentação: Não fez a análise de complexidade e a justificativa para o uso das TAD's está bastante superficial.
+Geração ACE: O método está correto, mas ele sequer é executado.
+Distribuição de cartas: O método está correto, mas ele sequer é executado.
+Formação e armazenamento dos pares: Não achei o método responsável.
+Simulação das jogadas: Como seu código não roda em local nenhum, não existe simulação pras jogadas e seu código aparentemente está incompleto.
+Simulação completa: Houve a tentativa de chamar a função "jogarMico()", no entanto a simulação não funciona. De maneira geral, o simulador está incompleto.

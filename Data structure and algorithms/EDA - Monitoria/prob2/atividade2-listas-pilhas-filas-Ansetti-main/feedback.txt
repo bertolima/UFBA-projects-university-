@@ -1,0 +1,9 @@
+"Documentação: Algumas das justificativas para o uso da lista encadeada estão erradas. Além disso foi a única TAD que você justificou. Não fez análise de complexidade.
+Geração ACE: Usou método shuffle da biblioteca random.
+Distribuição de cartas: Você criou a função, mas não a chamou em nenhum lugar, além disso, usou método len do python.
+Formação e armazenamento dos pares: Não achei o responsável por isso.
+Simulação das jogadas: Talvez seja porque você não chamou a funcão de distribuir as cartas em local nenhum, mas as jogadas não são mostradas da maneira esperada.
+Simulação completa: O código não rodou, pois na função jogada, na linha 97, você esqueceu de botar o self em jogador_atual, como não havia nenhum jogador_atual dentro da função, o python retornava que a variavel não estava definida. Além disso, não modularizou, e faltou comentários no código.
+
+
+"

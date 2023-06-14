@@ -43,3 +43,14 @@ void RandomizedQuickSort(T &arr, int start, int end){
     RandomizedQuickSort(arr, q+1, end);
     }
 }
+
+template <class T>
+void tailQuickSort(T &arr, int start, int end){
+    while (start < end){
+        int q = Partition(arr, start, end);
+        tailQuickSort(arr, start, q-1);
+        start = q + 1;
+    }
+}
+
+

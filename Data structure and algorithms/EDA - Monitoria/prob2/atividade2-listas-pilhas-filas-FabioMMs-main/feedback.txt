@@ -1,0 +1,8 @@
+"Documentação: OK
+Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas ""prontas"", mas você utilizou o método shuffle da biblioteca random.
+Distribuição de cartas: OK
+Formação e armazenamento dos pares: OK
+Simulação das jogadas: Não tem timming e não da pra saber quem está jogando e o que está acontecendo no jogo...
+Simulação completa: Se atente pra não misturar a função de cada classe, por exemplo, ao colocar os métodos de uma pilha dentro da classe Baralho não fica totalmente explícito que você está usando uma pilha, mas sim um baralho (apesar de você ter comentado), sugiro que você crie um módulo com a classe pilha, e dentro da classe baralho você crie uma variável do tipo pilha, assim as coisas ficam mais organizadas e claras. No mais, sua simulação não funciona adequadamente.
+
+OBS: Código muito bem comentado"

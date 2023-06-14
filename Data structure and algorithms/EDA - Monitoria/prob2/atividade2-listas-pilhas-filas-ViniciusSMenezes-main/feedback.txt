@@ -1,0 +1,6 @@
+Documentação: A análise de complexidade incompleta, existe mais que duas funções importantes na sua aplicação.
+Geração ACE: Primeiramente as cartas devem ser geradas, depois de gerar elas você embaralha, mas seu método já gera elas embaralhadas.
+Distribuição de cartas: Só está funcionando pra dois jogadores, mas fuciona.
+Formação e armazenamento dos pares: OK
+Simulação das jogadas: A representação das cartas ficou muito bonita, mas se tiver 2 ou mais fileiras de cartas ela buga. Além disso, não tem timming pras jogadas.
+Simulação completa: O simulador funciona bem, mas diversos métodos poderiam ser diminuidos e a escolha para o nome de alguns módulos e classes é confusa.

@@ -1,0 +1,6 @@
+Documentação: Justificativa para o uso da lista encadeado não bate totalmente pra todas estruturas que você queria representar.
+Geração ACE: OK
+Distrinbuição de cartas: OK
+Formação e armazenamento dos pares: OK
+Simulação das jogadas: Faltou timming pras jogadas, se tratando de um simulador não faz muito sentido o programa todo executar de vez, a simulação das jogadas deve ter "timming" de modo que seja possivel visualizar cada uma delas enquanto ocorrem.
+Simulação completa: Haviam melhores TAD's para representar algumas estruturas, como por exemplo, o ACE, que poderia ser representado por uma Pilha. No mais, o simulador funciona bem.

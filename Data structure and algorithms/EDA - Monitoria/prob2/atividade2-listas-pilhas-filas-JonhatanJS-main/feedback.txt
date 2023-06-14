@@ -1,0 +1,6 @@
+Documentação: O relatório deve estar em um arquivo Markdown, você escreveu no relatório de um commit. Além disso, há erros de definição nas justificativas e erros na análise de complexidade.
+Geração ACE: OK
+Distribuição de cartas: Método muito longo e faz bem mais coisas do que devia.
+Formação e armazenamento dos pares: Tem muitas operações desnecessárias, e faz mais coisas do que devia também.
+Simulação das jogadas: Não tem timming pras jogadas, formatação das informações está um pouco confusa.
+Simulação completa: Não há parametrização da quantidade de jogadores. Modularização e nomeação foi mal feita e também existe mais de uma classe em alguns módulos (classes totalmente diferentes).

@@ -1,0 +1,7 @@
+"Documentação: Justificativa da escolha dos TAD's está incompleta.
+Geração ACE: Existe colisão na aleatoriedade do seu método.
+Distribuição de cartas: Além do método só funcionar com dois jogadores, ele não roda direito e o número de cartas pra cada jogador está fixo em 26 (o jogo do mico não funciona assim).
+Formação e armazenamento dos pares: O método responsável por isso não faz sentido.
+Simulação das jogadas: O simulador não roda, mas analisando seu código pode-se inferir que a lógica dos processos está errada.
+Simulação completa: O simulador não roda apropriadamente, e mesmo que rodasse, os métodos estão restritos a funcionar apenas com duas pessoas. No modulo cJogo na linha 38 tem erro de sintaxe e na linha 40, se o resultado da expressao logica dentro do if for falso, a variavel carta não é criada e portanto da erro na linha 40.
+"
