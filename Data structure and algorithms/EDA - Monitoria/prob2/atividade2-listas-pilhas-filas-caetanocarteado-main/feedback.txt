@@ -1,7 +1,0 @@
-"Documentação: Não justificou as TAD's adequadamente e a análise de complexidade está errada.
-Geração ACE: Usou método shuffle da biblioteca random.
-Distribuição de cartas: Por que o for dentro dessa função só itera 5 vezes? No mais, parece correto.
-Formação e armazenamento dos pares: Não achei o método, sequer achei a variavel que deveria armazenar os pares.
-Simulação das jogadas: Informações insuficientes sobre as jogadas, além disso a aplicação não tem timmimg e não encerra nunca (alguma verificação pra sair o loop while está sendo feita incorretamente)
-Simulação completa: O simulador não roda apropriadamentee não modularizou/comentou o código adequadamente. 
-"

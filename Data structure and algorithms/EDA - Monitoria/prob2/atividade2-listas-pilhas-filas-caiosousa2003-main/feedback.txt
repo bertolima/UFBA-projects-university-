@@ -1,9 +1,0 @@
-Documentação: A análise de complexidade está errada/incompleta.
-Geração ACE: OK
-Distribuição de cartas: OK
-Formação e armazenamento dos pares: OK
-Simulação das jogadas: OK
-Simulação completa: OK
-
-OBS: Podia deixar o nome do módulo cMonte como cPilha mesmo, e incluir as operações a mais no módulo cDeckOrd(inclusive, se este estivesse nomeado de Baralho, ficaria mais simples buscar pelas operações no seu código também). Enfim, o trabalho ficou bom, só se atente mais pra essas fragmentações desnecessárias e um pouquinho confusas.
-

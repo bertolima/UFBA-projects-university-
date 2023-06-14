@@ -1,6 +1,0 @@
-Documentação: Tanto análise de complexidade quanto a justificativa pras TAD's estão incompletas.
-Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas "prontas", mas você utilizou o método shuffle da biblioteca random.
-Distribuição de cartas: Você divide a quantidade de cartas pela quantidade de jogadores e distribui as cartas igualmente entre os jogadores, mas não é assim que a distribuição de cartas deve ocorrer. Era só trocar o for por um "while(not baralho.isEmpty())" distribuir as cartas uma a uma entre os jogadores.
-Formação e armazenamento dos pares: Seria mais adequado armazenar os pares formados numa pilha. Além disso, você deixou o que seria o método de formação meio largado no "main.py", ele parece parcialmente correto, mas tem erros, também ficou difícil identificar as coisas.
-Simulação das jogadas: Não tem timming pras jogadas, faltaram informações referentes a cada jogada e a divisão entre elas não é muito bem feita (no console).
-Simulação completa: Como voce mesmo disse no relatório, a simulação não funciona. A modularização poderia ser melhor, bem como a escolha das classes que você fez.

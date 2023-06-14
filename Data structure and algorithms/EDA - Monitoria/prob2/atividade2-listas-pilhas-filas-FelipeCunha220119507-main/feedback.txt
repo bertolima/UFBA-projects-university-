@@ -1,6 +1,0 @@
-Documentação: A análise de complexidade e justificativa de uso estão incompletas.
-Geração ACE: O intuito da atividade é que se faça as operações sem utilizar coisas "prontas", mas você utilizou o método shuffle da biblioteca random.
-Distribuição de cartas: OK
-Formação e armazenamento dos pares: Usou dicionário e não justificou.
-Simulação das jogadas: A representação das cartas ficou confusa.
-Simulação completa: Não roda, o código da erro na linha 56, você tentou acessar o atributo valor numa STRING. Além disso, não modularizou o código e não comentou

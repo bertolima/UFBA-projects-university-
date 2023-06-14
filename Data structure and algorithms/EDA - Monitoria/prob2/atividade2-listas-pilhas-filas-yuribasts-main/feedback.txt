@@ -1,6 +1,0 @@
-Documentação: Não foi encontrado.
-Geração ACE: O método não está todo errado, mas você usou o tipo list do python.
-Distrinbuição de cartas: O método não está todo errado, mas você usou o tipo list do python.
-Formação e armazenamento dos pares: O método não está todo errado, mas você usou o tipo list do python e usou o operador "in".
-Simulação das jogadas: É extremamente inconveniente para o usuário ter que ficar digitado "s" ou "n" para que cada jogada seja executada.
-Simulação completa: Seu simulador funciona parcialmente, mas você nao usou NENHUMA dos TAD's requeridos, sua aplicação consiste apenas de tipo list do próprio python. Além disso, não foi feita nenhuma CLASSE, sua aplicação funciona toda com base em funções.
