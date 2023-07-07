@@ -11,7 +11,7 @@ class Screen:
     
     def __init__(self):
 
-        self.img = pyglet.image.load("./DEMs/Terreno0.5K.jpg")
+        self.img = pyglet.image.load("./DEMs/test3.jpg")
 
         self.width = self.img.width
         self.height = self.img.height
@@ -25,8 +25,8 @@ class Screen:
 
         self.shapes = []
 
-        self.depth = 0
-        self.aproxLimit = 20
+        self.depth = 10
+        self.aproxLimit = 1
         
         
         window = pyglet.window.Window(self.width, self.height)
@@ -69,8 +69,9 @@ class Screen:
                          
                     
              elif(self.drawLevel):
-                  if (self.aproxLimit < 50):
-                    self.aproxLimit += 5
+                  if (self.aproxLimit < 100):
+                    self.shapes.clear()
+                    self.aproxLimit += 2
                     self.tree.drawLevel(self.depth, self.shapes, self.Level, self.pixel_data, self.width, self.height, self.aproxLimit)
 
         def pressLeft():
@@ -81,7 +82,8 @@ class Screen:
                     self.tree.drawFull(self.depth, self.shapes, self.Full)
              elif(self.drawLevel):
                   if (self.aproxLimit > 0):
-                    self.aproxLimit -= 5
+                    self.shapes.clear()
+                    self.aproxLimit -= 2
                     self.tree.drawLevel(self.depth, self.shapes, self.Level, self.pixel_data, self.width, self.height, self.aproxLimit)
                   
 	

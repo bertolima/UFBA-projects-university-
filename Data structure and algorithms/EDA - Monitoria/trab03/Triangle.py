@@ -1,4 +1,5 @@
 import pyglet
+import math
 
 class Triangle:
     def __init__(self, x1, y1, x2, y2, x3, y3, depth):
@@ -41,41 +42,69 @@ class Triangle:
 
         self.left.divide(depth)
         self.right.divide(depth)
+    
+    def contains(self, x, y):
+        orientacao1 = (self.x2 - self.x1) * (y - self.y1) - (x - self.x1) * (self.y2 - self.y1)
+        orientacao2 = (self.x3 - self.x2) * (y - self.y2) - (x - self.x2) * (self.y3 - self.y2)
+        orientacao3 = (self.x1 - self.x3) * (y - self.y3) - (x - self.x3) * (self.y1 - self.y3)
+
+        if (orientacao1 >= 0 and orientacao2 >= 0 and orientacao3 >= 0) or (orientacao1 <= 0 and orientacao2 <= 0 and orientacao3 <= 0):
+            return True
+        return False
 
     def calcularIntensidadeMedia(self, pixel_data, imgWidth, imgHeight, flag):
+        eMin = 256
+        eMax = 0
+        sum = 0
+        nPixel = 0
+        x3 = int(math.ceil(self.x3))
+        y3 = int(math.ceil(self.y3))
+        x1 = int(math.ceil(self.x1))
+        y1 = int(math.ceil(self.y1))
+        x2 = int(math.ceil(self.x2))
+        y2 = int(math.ceil(self.y2))
 
-        #calculo de ponto medio
-        x1 = (self.x3 + self.x1)/2
-        y1 = (self.y3 + self.y1)/2
-        x2 = (self.x3 + self.x2)/2
-        y2 = (self.y3 + self.y2)/2
-        x3 = (self.x1 + self.x2)/2
-        y3 = (self.y1 + self.y2)/2
+        if (y3 > y1):
+            aux = y1
+            y1 = y3
+            y3 = aux
+        if (y3 > y2):
+            aux = y2
+            y2 = y3
+            y3 = aux
+        if (x3 > x2):
+            aux = x2
+            x2 = x3
+            x3 = aux
+        if (x3 > x1):
+            aux = x1
+            x1 = x3
+            x3 = aux
 
-        xCentro = (x1 + x2 + x3) / 3
-        yCentro = (y1 + y2 + y3) / 3
+        for x in range(x3, x2):
+            for y in range(y3, y1):
+                if (self.contains(x,y)):
+                    index = y * imgWidth + x
+                    intensidade = pixel_data[index]
+                    sum += intensidade
+                    nPixel +=1
+                    if intensidade > eMax: eMax = intensidade
+                    elif intensidade < eMin: eMin = intensidade
 
-        indexCentro = int(yCentro * imgWidth + xCentro)
-        intensidadeCentro = pixel_data[indexCentro]
+			# incrementa o contador de elevações do valor encontrado no pixel/amostra
 
-        #calculo de intensidade nos 3 pontos que formam o triangulo
-        total = imgWidth*imgHeight-1
-        index1 = int(self.y1 * imgWidth + self.x1)
-        index2 = int(self.y2 * imgWidth + self.x2)
-        index3 = int(self.y3 * imgWidth + self.x3)
+
+        if (nPixel == 0):
+            eMed = 0
+        else:
+            eMed = sum/nPixel
+        if (abs(eMin - eMed) < flag):return True
+        if (abs(eMax - eMed) < flag):return True
+        return False
     
-        print(index1)
-        intensidade1 = pixel_data[index1]
-        intensidade2 = pixel_data[index2]
-        intensidade3 = pixel_data[index3]
-        
 
-        media_intensidades = (intensidade1 + intensidade2 + intensidade3) // 3
 
-        # Calcular o erro médio do triângulo
-        erroMedio = int(abs(media_intensidades - intensidadeCentro))
-        if(abs(intensidade1-intensidade2) > flag or abs(intensidade1-intensidade3) > flag or abs(intensidade2-intensidade3) > flag): self.flag =  False
-        else: self.flag = True
+
     
     def drawFull(self, maxDepth, shapes, batch):
         if (self.depth > maxDepth): return
@@ -88,13 +117,11 @@ class Triangle:
         self.right.drawFull(maxDepth, shapes, batch)
 
     def drawLevel(self, maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag):
-        self.calcularIntensidadeMedia(pixelList, imgWidth, imgHeight, flag)
         if (self.depth > maxDepth): return
-        if (self.flag): return
-        if(self.depth == 0):
-            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
-        else:
-            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        if (self.calcularIntensidadeMedia(pixelList, imgWidth, imgHeight, flag)): return
+        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+        shapes.append(pyglet.shapes.Line(self.x2,self.y2,self.x3,self.y3, color =(100, 100, 100), batch=batch))
         
         self.left.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
         self.right.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
@@ -119,6 +146,8 @@ class Triangle:
             self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
             self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
             return
+        
+
 
             
     def getLeft(self):

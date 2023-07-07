@@ -28,6 +28,7 @@ class binaryTree:
 		self.depth+=1
 		self.left.addLevel()
 		self.right.addLevel()
+		
 	def getDepth(self):
 		return self.depth
 
