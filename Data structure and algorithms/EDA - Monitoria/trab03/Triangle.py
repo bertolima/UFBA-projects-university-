@@ -1,95 +1,131 @@
 import pyglet
 
 class Triangle:
-    def __init__(self, x1, y1, x2, y2, x3, y3, batch, depth):
+    def __init__(self, x1, y1, x2, y2, x3, y3, depth):
+        #pontos que formam os vertices do triangulo
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
         self.x3 = x3
         self.y3 = y3
-        self.erro = 0
-        self.c1 = pyglet.shapes.Line(x1,y1,x2,y2, color =(100, 100, 100), batch=batch)
-        self.c2 = pyglet.shapes.Line(x2,y2,x3,y3, color =(100, 100, 100), batch=batch)
-        self.c3 = pyglet.shapes.Line(x1,y2,x3,y3, color =(100, 100, 100), batch=batch)
+
+        #profundidade do nó atual
         self.depth = depth
+
+        #filhos do nó atual
         self.left = None
         self.right = None
     
-    def getx1(self):
-        return self.x1
-    
-    def gety1(self):
-        return self.y1
-    
-    def getx2(self):
-        return self.x2
-    
-    def gety2(self):
-        return self.y2
-    
-    def getx3(self):
-        return self.x3
-    
-    def gety3(self):
-        return self.y3
-    
-    def divide(self, batch, img):
-        if (self.calcularIntensidadeMedia(img) < 10):
-            return
+    #divide o triangulo de forma recursiva
+    def divide(self, depth):
+        # se a profundidade atual for maior que a profundidade desejada paramos de dividir
+        if (self.depth > depth): return
+
+        #o vertice correspondente ao angulo de 90 graus dos triangulos filhos é obtido dividindo a hipotenusa do triangulo atual por 2
         xm = (self.x1+self.x2)/2
         ym = (self.y1+self.y2)/2
 
-        self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, batch, self.depth+1)
-        self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, batch, self.depth+1)
+        #criando os filhos
+        self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
+        self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
 
-        self.left.divide(batch, img)
-        self.right.divide(batch, img)
-
-    def calcularIntensidadeMedia(self, img):
-
-        img_data = img.get_image_data()
-
-        pixel_data = img_data.get_data('L', img_data.width)
-
-        #calculo de ponto medio
-        x1 = (self.x3 + self.x1)/2
-        y1 = (self.y3 + self.y1)/2
-        x2 = (self.x3 + self.x2)/2
-        y2 = (self.y3 + self.y2)/2
-        x3 = (self.x1 + self.x2)/2
-        y3 = (self.y1 + self.y2)/2
-
-        xCentro = (x1 + x2 + x3) / 3
-        yCentro = (y1 + y2 + y3) / 3
-
-        indexCentro = int(yCentro * img.width + xCentro)
-        intensidadeCentro = pixel_data[indexCentro]
-
-        #calculo de intensidade nos 3 pontos que formam o triangulo
-        total = (img.width * img.height) -1
-        index1 = min(max(int(self.x1 * img.width + self.y1) -1, 0), total)
-        index2 = min(max(int(self.x2 * img.width + self.y2) -1, 0), total)
-        index3 = min(max(int(self.x3 * img.width + self.y3) -1, 0), total)
-        intensidade1 = pixel_data[index1]
-        intensidade2 = pixel_data[index2]
-        intensidade3 = pixel_data[index3]
-
-        media_intensidades = (intensidade1 + intensidade2 + intensidade3) // 3
-
-        # Calcular o erro médio do triângulo
-        erroMedio = media_intensidades - intensidadeCentro
-        erroMedio = int(abs(erroMedio))
-        print("O erro medio é:", erroMedio)
-        return erroMedio
-        
+        #dando continuidade ao processo de subdivisao de forma recursiva
+        self.left.divide(depth)
+        self.right.divide(depth)
     
+    #essa função serve pra verificar se um ponto está contido dentro do triangulo
+    def contains(self, x, y):
+        orientacao1 = (self.x2 - self.x1) * (y - self.y1) - (x - self.x1) * (self.y2 - self.y1)
+        orientacao2 = (self.x3 - self.x2) * (y - self.y2) - (x - self.x2) * (self.y3 - self.y2)
+        orientacao3 = (self.x1 - self.x3) * (y - self.y3) - (x - self.x3) * (self.y1 - self.y3)
+
+        if (orientacao1 >= 0 and orientacao2 >= 0 and orientacao3 >= 0) or (orientacao1 <= 0 and orientacao2 <= 0 and orientacao3 <= 0):
+            return True
+        return False
+
+    #de forma resumida, calcula o desvio padrao dos pixels do triangulo, se o desvio padrao for alto continuamos a dividir, se for baixo paramos
+    def calcularIntensidadeMedia(self, pixel_data, imgWidth, imgHeight, flag):
+        eMin = 256
+        eMax = 0
+        sum = 0
+        nPixel = 0
+
+        x3 = int(min(self.x1, self.x2, self.x3))
+        x2 = int(max(self.x1, self.x2, self.x3))
+        y3 = int(min(self.y1, self.y2, self.y3))
+        y1 = int(max(self.y1, self.y2, self.y3))
+
+        #loop que faz o calculo do numero de pixels percorridos e o valor total da intensidade desses pixels
+        for x in range(x3+1, x2):
+            for y in range(y3+1, y1):
+                if (self.contains(x,y)):
+                    index = y * imgWidth + x
+                    intensidade = pixel_data[index]
+                    sum += intensidade
+                    nPixel +=1
+                    if intensidade > eMax: eMax = intensidade
+                    elif intensidade < eMin: eMin = intensidade
+
+        #calculo da media da intensidade de pixel do triangulo
+        if (nPixel == 0):
+            eMed = 0
+        else:
+            eMed = sum/nPixel
+
+        if (abs(eMin - eMed) > flag):return False
+        if (abs(eMax - eMed) > flag):return False
+        if (abs(eMax - eMin) > flag):return False
+        return True
+    
+    #desenha a arvore toda
+    def drawFull(self, maxDepth, shapes, batch):
+        if (self.depth > maxDepth): return
+        if(self.depth == 0):
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        else:
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+    
+        self.left.drawFull(maxDepth, shapes, batch)
+        self.right.drawFull(maxDepth, shapes, batch)
+
+    #desenha a arvore por aproximação
+    def drawLevel(self, maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag):
+        if (self.depth > maxDepth): return
+        if (self.calcularIntensidadeMedia(pixelList, imgWidth, imgHeight, flag)): return
+        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+        shapes.append(pyglet.shapes.Line(self.x2,self.y2,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+        
+        self.left.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
+        self.right.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
+    
+    #aumenta a profundidade da arvore em 1
+    def addLevel(self):
+        #enquanto o filho esquerdo for diferente de None eu continuo buscando um filho esquerdo que seja None
+        if (self.left != None):
+            self.left.addLevel()
+        #quando eu acho um filho esquerdo igual a None, eu crio um filho esquerdo e um filho direito(como a profundidade é igual pra toda arvore n tem problema fazer isso)
+        else:
+            xm = (self.x1+self.x2)/2
+            ym = (self.y1+self.y2)/2
+
+            self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
+            self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
+            return
+
+        #msm coisa da parte de cima, porém pro filho direito.
+        if (self.right != None):
+            self.right.addLevel()
+        else:
+            xm = (self.x1+self.x2)/2
+            ym = (self.y1+self.y2)/2
+
+            self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
+            self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
+            return
         
 
-    def getLeft(self):
-        return self.left
-    def getRight(self):
-        return self.right
 
 
 
