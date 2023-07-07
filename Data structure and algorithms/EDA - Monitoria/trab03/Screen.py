@@ -2,17 +2,12 @@ import pyglet
 from binaryTree import binaryTree
 
 
-def lerImagem(arq):
-        img = pyglet.image.load(arq)
-        return img
-
-
 
 class Screen:
     
-    def __init__(self):
+    def __init__(self, img):
 
-        self.img = pyglet.image.load("./DEMs/Terreno1K.png")
+        self.img = img
 
         self.width = self.img.width
         self.height = self.img.height
@@ -26,7 +21,7 @@ class Screen:
 
         self.shapes = []
 
-        self.depth = 10
+        self.depth = 14
         self.aproxLimit = 20
         
         
@@ -97,9 +92,9 @@ class Screen:
                   pressG()
              elif(key == pyglet.window.key.K):
                   pressK()
-             elif(key == pyglet.window.key.X):
+             elif(key == pyglet.window.key.MOTION_RIGHT):
                   pressRight()
-             elif(key == pyglet.window.key.Z):
+             elif(key == pyglet.window.key.MOTION_LEFT):
                   pressLeft()     
         
         @window.event
@@ -116,4 +111,3 @@ class Screen:
         
         pyglet.app.run()
         
-screen = Screen()
