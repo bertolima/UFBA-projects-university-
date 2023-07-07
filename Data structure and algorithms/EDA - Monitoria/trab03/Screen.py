@@ -7,11 +7,12 @@ def lerImagem(arq):
         return img
 
 
+
 class Screen:
     
     def __init__(self):
 
-        self.img = pyglet.image.load("./DEMs/test3.jpg")
+        self.img = pyglet.image.load("./DEMs/Terreno1K.png")
 
         self.width = self.img.width
         self.height = self.img.height
@@ -26,7 +27,7 @@ class Screen:
         self.shapes = []
 
         self.depth = 10
-        self.aproxLimit = 1
+        self.aproxLimit = 20
         
         
         window = pyglet.window.Window(self.width, self.height)

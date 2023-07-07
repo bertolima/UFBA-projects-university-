@@ -1,6 +1,15 @@
 import pyglet
 import math
 
+def swap(x,y):
+    aux = x
+    x = y
+    y = aux
+
+def area(x1, y1, x2, y2, x3, y3):
+    return abs((x1 * (y2 - y3) + x2 * (y3 - y1)
+                + x3 * (y1 - y2)) / 2.0)
+
 class Triangle:
     def __init__(self, x1, y1, x2, y2, x3, y3, depth):
         self.x1 = x1
@@ -9,7 +18,6 @@ class Triangle:
         self.y2 = y2
         self.x3 = x3
         self.y3 = y3
-        self.flag = None
         self.depth = depth
         self.left = None
         self.right = None
@@ -38,7 +46,7 @@ class Triangle:
         ym = (self.y1+self.y2)/2
 
         self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
-        self.right = Triangle(self.x3, self.y3,self.x2, self.y2,  xm, ym, self.depth+1)
+        self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
 
         self.left.divide(depth)
         self.right.divide(depth)
@@ -57,49 +65,39 @@ class Triangle:
         eMax = 0
         sum = 0
         nPixel = 0
-        x3 = int(math.ceil(self.x3))
-        y3 = int(math.ceil(self.y3))
-        x1 = int(math.ceil(self.x1))
-        y1 = int(math.ceil(self.y1))
-        x2 = int(math.ceil(self.x2))
-        y2 = int(math.ceil(self.y2))
+        elements = []
+    
 
-        if (y3 > y1):
-            aux = y1
-            y1 = y3
-            y3 = aux
-        if (y3 > y2):
-            aux = y2
-            y2 = y3
-            y3 = aux
-        if (x3 > x2):
-            aux = x2
-            x2 = x3
-            x3 = aux
-        if (x3 > x1):
-            aux = x1
-            x1 = x3
-            x3 = aux
+        x3 = int(min(self.x1, self.x2, self.x3))
+        x2 = int(max(self.x1, self.x2, self.x3))
+        y3 = int(min(self.y1, self.y2, self.y3))
+        y1 = int(max(self.y1, self.y2, self.y3))
 
-        for x in range(x3, x2):
-            for y in range(y3, y1):
+        for x in range(x3+1, x2):
+            for y in range(y3+1, y1):
                 if (self.contains(x,y)):
                     index = y * imgWidth + x
                     intensidade = pixel_data[index]
                     sum += intensidade
                     nPixel +=1
+                    elements.append(intensidade)
                     if intensidade > eMax: eMax = intensidade
                     elif intensidade < eMin: eMin = intensidade
-
-			# incrementa o contador de elevações do valor encontrado no pixel/amostra
 
 
         if (nPixel == 0):
             eMed = 0
         else:
             eMed = sum/nPixel
-        if (abs(eMin - eMed) < flag):return True
-        if (abs(eMax - eMed) < flag):return True
+
+        desvio = 0
+        for i in range(len(elements)):
+            desvio += math.pow(intensidade-eMed, 2)
+        
+        desvio /= len(elements)
+        desvio = math.sqrt(desvio)
+
+        if (desvio < 5): return True
         return False
     
 
