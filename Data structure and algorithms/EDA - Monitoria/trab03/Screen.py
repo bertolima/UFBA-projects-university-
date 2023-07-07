@@ -1,6 +1,7 @@
 import pyglet
 from binaryTree import binaryTree
 
+
 def lerImagem(arq):
         img = pyglet.image.load(arq)
         return img
@@ -10,7 +11,7 @@ class Screen:
     
     def __init__(self):
 
-        self.img = lerImagem('./DEMs/Terreno0.5K.jpg')
+        self.img = pyglet.image.load("./DEMs/Terreno0.5K.jpg")
 
         self.width = self.img.width
         self.height = self.img.height
@@ -56,9 +57,9 @@ class Screen:
                   self.drawLevel = True
                   self.tree.drawLevel(self.depth, self.shapes, self.Level, self.pixel_data, self.width, self.height, self.aproxLimit)
         def pressRight():
-             self.shapes.clear()
              if (self.drawFull):
-                  if (self.depth < 14):
+                  if (self.depth < 20):
+                    self.shapes.clear()
                     self.depth += 1
                     if(self.tree.getDepth() >= self.depth):
                          self.tree.drawFull(self.depth, self.shapes, self.Full)
@@ -73,8 +74,9 @@ class Screen:
                     self.tree.drawLevel(self.depth, self.shapes, self.Level, self.pixel_data, self.width, self.height, self.aproxLimit)
 
         def pressLeft():
-             self.shapes.clear()
+             
              if (self.drawFull):
+                    self.shapes.clear()
                     self.depth -= 1
                     self.tree.drawFull(self.depth, self.shapes, self.Full)
              elif(self.drawLevel):

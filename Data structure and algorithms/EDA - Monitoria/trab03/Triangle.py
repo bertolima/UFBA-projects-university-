@@ -37,7 +37,7 @@ class Triangle:
         ym = (self.y1+self.y2)/2
 
         self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
-        self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
+        self.right = Triangle(self.x3, self.y3,self.x2, self.y2,  xm, ym, self.depth+1)
 
         self.left.divide(depth)
         self.right.divide(depth)
@@ -60,14 +60,15 @@ class Triangle:
 
         #calculo de intensidade nos 3 pontos que formam o triangulo
         total = imgWidth*imgHeight-1
-        index1 = min(max(int(max((self.y1-1),0) * (imgWidth) + self.x1),0), total)
-        index2 = min(max(int(max((self.y2-1),0) * (imgWidth) + self.x2),0), total)
-        index3 = min(max(int(max((self.y3-1),0) * (imgWidth) + self.x3),0), total)
-
-
+        index1 = int(self.y1 * imgWidth + self.x1)
+        index2 = int(self.y2 * imgWidth + self.x2)
+        index3 = int(self.y3 * imgWidth + self.x3)
+    
+        print(index1)
         intensidade1 = pixel_data[index1]
         intensidade2 = pixel_data[index2]
         intensidade3 = pixel_data[index3]
+        
 
         media_intensidades = (intensidade1 + intensidade2 + intensidade3) // 3
 
@@ -78,9 +79,11 @@ class Triangle:
     
     def drawFull(self, maxDepth, shapes, batch):
         if (self.depth > maxDepth): return
-        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
-        shapes.append( pyglet.shapes.Line(self.x2,self.y2,self.x3,self.y3, color =(100, 100, 100), batch=batch))
-        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+        if(self.depth == 0):
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        else:
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+    
         self.left.drawFull(maxDepth, shapes, batch)
         self.right.drawFull(maxDepth, shapes, batch)
 
@@ -88,9 +91,11 @@ class Triangle:
         self.calcularIntensidadeMedia(pixelList, imgWidth, imgHeight, flag)
         if (self.depth > maxDepth): return
         if (self.flag): return
-        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
-        shapes.append( pyglet.shapes.Line(self.x2,self.y2,self.x3,self.y3, color =(100, 100, 100), batch=batch))
-        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+        if(self.depth == 0):
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        else:
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+        
         self.left.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
         self.right.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
     
