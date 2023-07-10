@@ -33,6 +33,19 @@ class Triangle:
         #dando continuidade ao processo de subdivisao de forma recursiva
         self.left.divide(depth)
         self.right.divide(depth)
+    def subdivide(self):
+        xm = (self.x1+self.x2)/2
+        ym = (self.y1+self.y2)/2
+
+        #criando os filhos
+        self.left = Triangle(self.x1, self.y1, self.x3, self.y3, xm, ym, self.depth+1)
+        self.right = Triangle(self.x3, self.y3, self.x2, self.y2, xm, ym, self.depth+1)
+    
+    def getLeft(self):
+        return self.left
+    
+    def getRight(self):
+        return self.right
     
     #essa função serve pra verificar se um ponto está contido dentro do triangulo
     def contains(self, x, y):
@@ -82,20 +95,23 @@ class Triangle:
     def drawFull(self, maxDepth, shapes, batch):
         if (self.depth > maxDepth): return
         if(self.depth == 0):
-            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(255, 100, 100), batch=batch))
         else:
-            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
-    
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(255, 100, 100), batch=batch))
         self.left.drawFull(maxDepth, shapes, batch)
         self.right.drawFull(maxDepth, shapes, batch)
+
+    def drawShape(self, batch):
+       return pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(255, 255,255,255), batch=batch)
 
     #desenha a arvore por aproximação
     def drawLevel(self, maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag):
         if (self.depth > maxDepth): return
         if (self.calcularIntensidadeMedia(pixelList, imgWidth, imgHeight, flag)): return
-        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(100, 100, 100), batch=batch))
-        shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(100, 100, 100), batch=batch))
-        shapes.append(pyglet.shapes.Line(self.x2,self.y2,self.x3,self.y3, color =(100, 100, 100), batch=batch))
+        if(self.depth == 0):
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x2,self.y2, color =(255, 100, 100), batch=batch))
+        else:
+            shapes.append(pyglet.shapes.Line(self.x1,self.y1,self.x3,self.y3, color =(255, 100, 100), batch=batch))
         
         self.left.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
         self.right.drawLevel(maxDepth, shapes, batch, pixelList, imgWidth, imgHeight, flag)
